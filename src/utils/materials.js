@@ -16,9 +16,15 @@ export const Materials = {
   }),
   metalShine: new THREE.MeshPhongMaterial({
     color: Colors.blackMetal,
-    emissive: Colors.black,
-    specular: Colors.sun,
-    shininess: 60,
+    // emissive: Colors.black,
+    // specular: Colors.sun,
+    // shininess: 60,
+  }),
+  darkMetalShine: new THREE.MeshPhongMaterial({
+    color: Colors.darkMetal,
+    // emissive: Colors.black,
+    // specular: Colors.sun,
+    // shininess: 60,
   }),
   wood: new THREE.MeshPhongMaterial({
     color: Colors.wood,
