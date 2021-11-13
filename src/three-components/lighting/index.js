@@ -6,7 +6,7 @@ export function Lights() {
   const pointLight = useRef();
   const directionalLight = useRef();
   useHelper(pointLight, PointLightHelper);
-  useHelper(directionalLight, DirectionalLightHelper);
+//   useHelper(directionalLight, DirectionalLightHelper);
 
   return (
     <>

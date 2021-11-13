@@ -1,8 +1,9 @@
 import {Canvas, useThree} from '@react-three/fiber';
 import {Desk} from '../desk';
 import {Lights} from '../lighting';
+import {Laptop} from '../laptop';
 import {CameraControls} from '../cameracontrols';
-import {Stars, Stats} from '@react-three/drei';
+import {Stats} from '@react-three/drei';
 import {deg2rad} from '../../utils/helpers';
 
 export function ThreeCanvas() {
@@ -18,9 +19,9 @@ export function ThreeCanvas() {
     >
       <Stats />
       <Desk position={[0, 0, 0]} />
+      <Laptop position={[0, 0, 0.2]} rotation={[0, deg2rad(-5), 0]}/>
       <Lights />
       <CameraControls />
-      {/* <ambientLight color={0xdddddd} /> */}
     </Canvas>
   );
 }
