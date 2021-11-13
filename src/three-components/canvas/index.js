@@ -1,14 +1,26 @@
-import {Canvas} from '@react-three/fiber';
-import {DemoObject} from './demoobject';
+import {Canvas, useThree} from '@react-three/fiber';
+import {Desk} from '../desk';
+import {Lights} from '../lighting';
+import {CameraControls} from '../cameracontrols';
 import {Stars, Stats} from '@react-three/drei';
+import {deg2rad} from '../../utils/helpers';
 
 export function ThreeCanvas() {
-    return (
-    <Canvas shadows={true} onCreated={(state) => state.gl.setClearColor('black')}>
-        <Stats />
-        <Stars />
-        <DemoObject></DemoObject>
-        <ambientLight color={0xdddddd} />
+  // useThree(({camera}) => {
+  //     camera.rotation.set(deg2rad(30), 0, 0);
+  // });
+
+  return (
+    <Canvas
+      camera={{position: [0, 2, 5], rotation: [deg2rad(-20), 0, 0]}}
+      shadows={true}
+      onCreated={(state) => state.gl.setClearColor('green')}
+    >
+      <Stats />
+      <Desk position={[0, 0, 0]} />
+      <Lights />
+      <CameraControls />
+      {/* <ambientLight color={0xdddddd} /> */}
     </Canvas>
-    );
+  );
 }

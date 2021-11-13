@@ -4,13 +4,13 @@ import {ThreeCanvas} from './three-components/canvas';
 function App() {
   return (
     <div className="app">
-      <div className="app-content-wrapper">
+      {/* <div className="app-content-wrapper">
         <header className="app-content">
           <p>
             Stefan
           </p>
         </header>
-      </div>
+      </div> */}
 
       <ThreeCanvas />
     </div>
