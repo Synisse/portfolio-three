@@ -40,11 +40,11 @@ export function Desk(aProps) {
   }
 
   return (
-    <>
-      <Box castShadow receiveShadow position={position} args={[5, 0.1, 2]}>
+    <group position={position}>
+      <Box castShadow receiveShadow position={[0, 0, 0]} args={[5, 0.1, 2]}>
         <meshPhongMaterial {...Materials.wood} />
       </Box>
       {renderFrame()}
-    </>
+    </group>
   );
 }
