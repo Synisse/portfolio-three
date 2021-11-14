@@ -48,7 +48,7 @@ export function Desk(aProps) {
       <Box castShadow receiveShadow position={[0, 0, 0]} args={[5, 0.1, 2]}>
         <meshPhongMaterial {...Materials.wood} />
       </Box>
-      <Headphones position={[-1,0.142,0]} rotation={[deg2rad(-106), deg2rad(0), deg2rad(-20)]}/>
+      <Headphones position={[-1,0.142,0.1]} rotation={[deg2rad(99), deg2rad(-16), deg2rad(-60)]}/>
       <Notepad position={[0.9,-0.125,0]} rotation={[0,deg2rad(-25),0]}/>
       <Mug position={[1.3,0.16,0.4]} rotation={[0, deg2rad(-60),0]} scale={[0.9, 0.9, 0.9]}/>
       {renderFrame()}

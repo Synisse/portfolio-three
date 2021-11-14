@@ -1,7 +1,7 @@
 export const Colors = {
     black: 0x000000,
     white: 0xFFFFFF,
-    paper: 0xcbcbbd,
+    paper: 0x5d5d4b,
     pen: 0x3701e9,
     gold: 0xa69326,
     metal: 0x757575,

@@ -6,7 +6,7 @@ import {useState} from 'react';
 export function CodingBlocks(aProps) {
   const {position, rotation} = aProps;
 
-  const DELTA_THRESHOLD = 0.005;
+  const DELTA_THRESHOLD = 0.003;
   let currentDelta = 0;
 
   const [codeBlocks, setCodeBlocks] = useState([
