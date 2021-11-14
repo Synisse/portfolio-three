@@ -5,6 +5,7 @@ import {useRef} from 'react';
 import {useFrame} from '@react-three/fiber';
 import {Direction} from '../../enums/direction';
 import {TextMesh} from '../text';
+import {CodingBlocks} from './codingblocks';
 
 export function Laptop(aProps) {
   const {position, rotation} = aProps;
@@ -89,13 +90,11 @@ export function Laptop(aProps) {
 
         <Box
           name="screen"
-          castShadow
-          receiveShadow
           position={[0, 0.23, -0.105]}
           args={[0.75, 0.05, 0.45]}
           rotation={[deg2rad(70), 0, 0]}
         >
-          <meshPhongMaterial {...Materials.darkMetalShine} />
+          <meshBasicMaterial {...Materials.blackMetalBasic} />
         </Box>
 
         <Cylinder
@@ -110,6 +109,7 @@ export function Laptop(aProps) {
         </Cylinder>
 
         <TextMesh position={[0.05, 0.18, -0.1]} rotation={[deg2rad(-20), deg2rad(180), deg2rad(0)]} text={'S'}/>
+        <CodingBlocks position={[0.025, -0.03, 0]} rotation={[deg2rad(-20), deg2rad(180), deg2rad(0)]} />
       </group>
     );
   }
