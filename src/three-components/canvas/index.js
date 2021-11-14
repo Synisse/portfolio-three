@@ -1,7 +1,7 @@
 import {Canvas, useThree} from '@react-three/fiber';
 import {Desk} from '../desk';
 import {Lights} from '../lighting';
-import {Laptop} from '../laptop';
+import {Laptop} from '../desk/laptop';
 import {CameraControls} from '../cameracontrols';
 import {Stats} from '@react-three/drei';
 import {deg2rad} from '../../utils/helpers';
@@ -15,7 +15,7 @@ export function ThreeCanvas() {
     <Canvas
       camera={{position: [0, 2, 5], rotation: [deg2rad(-20), 0, 0]}}
       shadows={true}
-      onCreated={(state) => state.gl.setClearColor('green')}
+      onCreated={(state) => state.gl.setClearColor('white')}
     >
       <Stats />
       <Desk position={[0, 0, 0]} />
