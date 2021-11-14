@@ -3,6 +3,7 @@ import {deg2rad} from '../../utils/helpers';
 import {Materials} from '../../utils/materials';
 import {Headphones} from './headphones';
 import {Notepad} from './notepad';
+import {Mug} from './mug';
 
 export function Desk(aProps) {
   const {position} = aProps;
@@ -49,6 +50,7 @@ export function Desk(aProps) {
       </Box>
       <Headphones position={[-1,0.142,0]} rotation={[deg2rad(-106), deg2rad(0), deg2rad(-20)]}/>
       <Notepad position={[0.9,-0.125,0]} rotation={[0,deg2rad(-25),0]}/>
+      <Mug position={[1.3,0.16,0.4]} rotation={[0, deg2rad(-60),0]} scale={[0.9, 0.9, 0.9]}/>
       {renderFrame()}
     </group>
   );
