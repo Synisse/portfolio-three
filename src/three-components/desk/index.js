@@ -1,5 +1,8 @@
 import {Box} from '@react-three/drei';
+import {deg2rad} from '../../utils/helpers';
 import {Materials} from '../../utils/materials';
+import {Headphones} from './headphones';
+import {Notepad} from './notepad';
 
 export function Desk(aProps) {
   const {position} = aProps;
@@ -44,6 +47,8 @@ export function Desk(aProps) {
       <Box castShadow receiveShadow position={[0, 0, 0]} args={[5, 0.1, 2]}>
         <meshPhongMaterial {...Materials.wood} />
       </Box>
+      <Headphones position={[-1,0.142,0]} rotation={[deg2rad(-106), deg2rad(0), deg2rad(-20)]}/>
+      <Notepad position={[0.9,-0.125,0]} rotation={[0,deg2rad(-25),0]}/>
       {renderFrame()}
     </group>
   );
