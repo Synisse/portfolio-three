@@ -9,8 +9,9 @@ export function useYScroll(aBounds, aProps) {
   const scrollCallback = useCallback(
     ({xy: [, cy], previous: [, py], memo = y.get()}) => {
       const newY = clamp(memo + cy - py, ...aBounds);
+
       set({y: newY});
-      console.log('newy: ', newY);
+
       return newY;
     },
     [aBounds, y, set]
