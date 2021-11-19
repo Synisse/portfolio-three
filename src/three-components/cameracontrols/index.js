@@ -12,6 +12,7 @@ export function CameraControls() {
 
   const controls = useRef();
   useFrame(() => controls.current.update());
+
   return (
     <orbitControls
       ref={controls}

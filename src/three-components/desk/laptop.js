@@ -6,13 +6,16 @@ import {useFrame} from '@react-three/fiber';
 import {Direction} from '../../enums/direction';
 import {TextMesh} from '../text';
 import {CodingBlocks} from './codingblocks';
+import {useYScroll} from '../../utils/useYScroll';
 
 export function Laptop(aProps) {
   const {position, rotation} = aProps;
 
+  const [y] = useYScroll([0, 800], {domTarget: window});
+
   const MAX_ROTATION = deg2rad(110);
   const MIN_ROTATION = deg2rad(0);
-  let currentRotation = 0;
+  let currentRotation = deg2rad(110);
   let animationRunning = false;
   let direction = Direction.OPENING;
 
@@ -25,6 +28,7 @@ export function Laptop(aProps) {
           currentRotation += 0.02;
           screenGroup.current.rotation.x = currentRotation;
         } else {
+          currentRotation = deg2rad(110);
           animationRunning = false;
         }
       }
@@ -34,24 +38,35 @@ export function Laptop(aProps) {
           currentRotation -= 0.02;
           screenGroup.current.rotation.x = currentRotation;
         } else {
+          currentRotation = 0;
           animationRunning = false;
         }
       }
     }
+    else {
+      if(y.get() > 650 && currentRotation === MAX_ROTATION) {
+        animationRunning = true;
+        direction = Direction.OPENING;
+      }
+      else if(y.get() < 650 && currentRotation === MIN_ROTATION) {
+        animationRunning = true;
+        direction = Direction.CLOSING;
+      }
+    }
   });
 
-  document.addEventListener('click', logKey);
+  // document.addEventListener('click', toggleLaptop);
 
-  function logKey(e) {
-    console.log('pressed');
-    if (direction === Direction.OPENING) {
-      direction = Direction.CLOSING;
-    } else {
-      direction = Direction.OPENING;
-    }
+  // function toggleLaptop(e) {
+  //   console.log('pressed');
+  //   if (direction === Direction.OPENING) {
+  //     direction = Direction.CLOSING;
+  //   } else {
+  //     direction = Direction.OPENING;
+  //   }
 
-    animationRunning = true;
-  }
+  //   animationRunning = true;
+  // }
 
   function applyMetalMaterial() {
     return <meshPhongMaterial {...Materials.metalShine} />;
@@ -75,7 +90,7 @@ export function Laptop(aProps) {
 
   function renderScreen() {
     return (
-      <group position={[0, 0.1, -0.26]} ref={screenGroup} rotation={[deg2rad(0), 0, 0]}>
+      <group position={[0, 0.1, -0.26]} ref={screenGroup} rotation={[deg2rad(110), 0, 0]}>
         {/* <axesHelper args={[10]} /> */}
         <Box
           name="screen-frame"
