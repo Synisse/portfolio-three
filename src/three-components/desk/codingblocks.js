@@ -1,89 +1,38 @@
 import {Box} from '@react-three/drei';
 import {useFrame} from '@react-three/fiber';
 import {Materials} from '../../utils/materials';
-import {useState} from 'react';
+import {useRef} from 'react';
+import {throttle} from 'lodash';
 
 export function CodingBlocks(aProps) {
   const {position, rotation} = aProps;
 
-  const DELTA_THRESHOLD = 0.003;
-  let currentDelta = 0;
+  // TODO: clean that stuff up
+  const ref1 = useRef();
+  const ref2 = useRef();
+  const ref3 = useRef();
+  const ref4 = useRef();
+  const ref5 = useRef();
+  const ref6 = useRef();
+  const ref7 = useRef();
+  const ref8 = useRef();
 
-  const [codeBlocks, setCodeBlocks] = useState([
-    {
-      position: [0.3, 0.575, 0],
-      size: [0.3, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyGreenMaterial,
-    },
-    {
-      position: [0.35, 0.5, 0],
-      size: [0.2, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyPurpleMaterial,
-    },
-    {
-      position: [0.25, 0.425, 0],
-      size: [0.4, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyGreenMaterial,
-    },
-    {
-      position: [0.4, 0.35, 0],
-      size: [0.1, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyGreenMaterial,
-    },
-    {
-      position: [0.325, 0.275, 0],
-      size: [0.15, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyGreenMaterial,
-    },
-    {
-      position: [0.125, 0.275, 0],
-      size: [0.15, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyGreenMaterial,
-    },
-    {
-      position: [0.295, 0.2, 0],
-      size: [0.21, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyGreenMaterial,
-    },
-    {
-      position: [0.295, 0.2, 0],
-      size: [0.21, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyGreenMaterial,
-    },
-    {
-      position: [0.4, 0.125, 0],
-      size: [0.1, 0.05, 0.05],
-      visible: false,
-      materialCallback: applyGreenMaterial,
-    },
-  ]);
+  const codeBlocks = [ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8];
 
-  useFrame(({clock}) => {
-    currentDelta += clock.getDelta();
-
-    if (currentDelta > DELTA_THRESHOLD) {
-      currentDelta = 0;
-      let visibleBlocks = codeBlocks.filter((aCodeBlock) => aCodeBlock.visible);
-
-      let copyBlocks = codeBlocks.slice();
+  const renderLoop = throttle(() => {
+      let visibleBlocks = codeBlocks.filter((aCodeBlock) => aCodeBlock.current.visible);
 
       if (codeBlocks.length !== visibleBlocks.length) {
-        copyBlocks[visibleBlocks.length].visible = true;
-        setCodeBlocks(copyBlocks);
+        codeBlocks[visibleBlocks.length].current.visible = true;
       } else {
-        copyBlocks.forEach((aCodeBlock) => {
-          aCodeBlock.visible = false;
+        codeBlocks.forEach((aCodeBlock) => {
+          aCodeBlock.current.visible = false;
         });
       }
-    }
+  }, 1000);
+
+  useFrame(() => {
+    renderLoop();
   });
 
   function applyGreenMaterial() {
@@ -95,13 +44,34 @@ export function CodingBlocks(aProps) {
   }
 
   function renderCodeBlocks() {
-    return codeBlocks.map((aCodeBlock) => {
       return (
-        <Box name="seventh-line-first-block" position={aCodeBlock.position} args={aCodeBlock.size} visible={aCodeBlock.visible}>
-          {aCodeBlock.materialCallback()}
-        </Box>
+        <>
+          <Box ref={ref1} position={[0.3, 0.575, 0]} args={[0.3, 0.05, 0.05]} visible={false}>
+            {applyGreenMaterial()}
+          </Box>
+          <Box ref={ref2} position={[0.35, 0.5, 0]} args={[0.2, 0.05, 0.05]} visible={false}>
+            {applyPurpleMaterial()}
+          </Box>
+          <Box ref={ref3} position={[0.25, 0.425, 0]} args={[0.4, 0.05, 0.05]} visible={false}>
+            {applyGreenMaterial()}
+          </Box>
+          <Box ref={ref4} position={[0.4, 0.35, 0]} args={[0.1, 0.05, 0.05]} visible={false}>
+            {applyGreenMaterial()}
+          </Box>
+          <Box ref={ref5} position={[0.325, 0.275, 0]} args={[0.15, 0.05, 0.05]} visible={false}>
+            {applyGreenMaterial()}
+          </Box>
+          <Box ref={ref6} position={[0.125, 0.275, 0]} args={[0.15, 0.05, 0.05]} visible={false}>
+            {applyGreenMaterial()}
+          </Box>
+          <Box ref={ref7} position={[0.295, 0.2, 0]} args={[0.21, 0.05, 0.05]} visible={false}>
+            {applyGreenMaterial()}
+          </Box>
+          <Box ref={ref8} position={[0.4, 0.125, 0]} args={[0.1, 0.05, 0.05]} visible={false}>
+            {applyGreenMaterial()}
+          </Box>
+        </>
       );
-    });
   }
 
   return (
