@@ -1,4 +1,11 @@
 @import 'style/_colors.scss';
+@import 'components/nameheader/style.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+}
 
 .app {
   text-align: center;

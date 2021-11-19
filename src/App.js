@@ -1,16 +1,11 @@
 import './App.scss';
 import {ThreeCanvas} from './three-components/canvas';
+import {NameHeader} from './components/nameheader';
 
 function App() {
   return (
     <div className="app">
-      {/* <div className="app-content-wrapper">
-        <header className="app-content">
-          <p>
-            Stefan
-          </p>
-        </header>
-      </div> */}
+      <NameHeader></NameHeader>
 
       <ThreeCanvas />
     </div>
